@@ -1,0 +1,21 @@
+{
+  "name": "electrobot-ai",
+  "version": "1.0.0",
+  "description": "ElectroBot AI - Gemini-powered Election Process Education App for PromptWars Hackathon",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "helmet": "^7.1.0",
+    "express-rate-limit": "^7.1.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": ["election", "education", "ai", "gemini", "india", "civic"],
+  "author": "MOHD UBES",
+  "license": "MIT"
+}

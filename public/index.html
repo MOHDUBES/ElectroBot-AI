@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="ElectroBot AI - Your AI-powered guide to understanding the Indian Election Process. Learn about voting, ECI, and your civic rights."/>
+  <title>ElectroBot AI | Election Process Education</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗳️</text></svg>"/>
+</head>
+<body>
+  <!-- Skip to main content for accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header -->
+  <header class="header" role="banner">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon" aria-hidden="true">🗳️</span>
+        <div>
+          <h1 class="logo-title">ElectroBot <span class="ai-badge">AI</span></h1>
+          <p class="logo-subtitle">Election Process Education</p>
+        </div>
+      </div>
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <button class="nav-btn active" onclick="showSection('chat')" id="nav-chat" aria-current="page">💬 Ask AI</button>
+        <button class="nav-btn" onclick="showSection('guide')" id="nav-guide">📖 Voter Guide</button>
+        <button class="nav-btn" onclick="showSection('quiz')" id="nav-quiz">🧠 Quiz</button>
+        <button class="nav-btn" onclick="showSection('rights')" id="nav-rights">⚖️ Your Rights</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content" class="main" role="main">
+
+    <!-- HERO SECTION -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-content">
+        <div class="hero-badge">🇮🇳 Powered by Gemini AI</div>
+        <h2 id="hero-heading" class="hero-title">
+          Understand India's<br/><span class="gradient-text">Election Process</span>
+        </h2>
+        <p class="hero-desc">Ask anything about voting, ECI, ballot process, voter registration, and your democratic rights. ElectroBot AI is here to educate and empower every Indian citizen.</p>
+        <div class="hero-stats" role="list" aria-label="Key statistics">
+          <div class="stat" role="listitem"><span class="stat-num">97Cr+</span><span class="stat-label">Registered Voters</span></div>
+          <div class="stat" role="listitem"><span class="stat-num">543</span><span class="stat-label">Lok Sabha Seats</span></div>
+          <div class="stat" role="listitem"><span class="stat-num">AI</span><span class="stat-label">Powered Answers</span></div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="pulse-ring"></div>
+        <div class="hero-icon">🗳️</div>
+      </div>
+    </section>
+
+    <!-- CHAT SECTION -->
+    <section id="section-chat" class="section active" aria-labelledby="chat-heading">
+      <div class="section-header">
+        <h2 id="chat-heading">💬 Ask ElectroBot AI</h2>
+        <p>Get instant AI-powered answers about the Indian election process</p>
+      </div>
+
+      <!-- Quick Prompts -->
+      <div class="quick-prompts" role="group" aria-label="Quick question suggestions">
+        <p class="quick-label">Quick Questions:</p>
+        <div class="prompt-chips">
+          <button class="chip" onclick="askQuick('How do I register as a voter in India?')" aria-label="Ask how to register as voter">🗳️ How to register as voter?</button>
+          <button class="chip" onclick="askQuick('What is NOTA in Indian elections?')" aria-label="Ask about NOTA">❌ What is NOTA?</button>
+          <button class="chip" onclick="askQuick('What is the role of ECI in India?')" aria-label="Ask about ECI">🏛️ Role of ECI?</button>
+          <button class="chip" onclick="askQuick('What documents are needed to vote in India?')" aria-label="Ask about documents needed">📄 Documents needed?</button>
+          <button class="chip" onclick="askQuick('How does the Electronic Voting Machine (EVM) work?')" aria-label="Ask about EVM">⚡ How does EVM work?</button>
+          <button class="chip" onclick="askQuick('What is the Model Code of Conduct in elections?')" aria-label="Ask about Model Code of Conduct">📋 Model Code of Conduct?</button>
+        </div>
+      </div>
+
+      <!-- Chat Container -->
+      <div class="chat-container" role="log" aria-live="polite" aria-label="Chat conversation">
+        <div id="chat-messages" class="chat-messages">
+          <div class="message bot-message" role="article">
+            <div class="message-avatar" aria-hidden="true">🤖</div>
+            <div class="message-content">
+              <p class="message-sender">ElectroBot AI</p>
+              <div class="message-text">
+                <p>Namaste! 🙏 I am <strong>ElectroBot AI</strong>, your intelligent guide to understanding India's democratic process.</p>
+                <p>I can help you understand:</p>
+                <ul>
+                  <li>📋 Voter Registration Process</li>
+                  <li>🗳️ How to cast your vote</li>
+                  <li>🏛️ Role of Election Commission of India (ECI)</li>
+                  <li>⚖️ Your voting rights and duties</li>
+                  <li>📊 Election types and procedures</li>
+                </ul>
+                <p>Ask me anything about Indian elections! 🇮🇳</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-input-area">
+          <div id="typing-indicator" class="typing-indicator hidden" aria-live="polite" aria-label="ElectroBot is typing">
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+            <span>ElectroBot is thinking...</span>
+          </div>
+          <form class="chat-form" onsubmit="sendMessage(event)" role="search" aria-label="Ask a question">
+            <label for="user-input" class="sr-only">Type your question about elections</label>
+            <input
+              type="text"
+              id="user-input"
+              class="chat-input"
+              placeholder="Ask about voter registration, EVM, ECI, your rights..."
+              autocomplete="off"
+              aria-label="Your question about elections"
+              maxlength="500"
+            />
+            <button type="submit" class="send-btn" id="send-btn" aria-label="Send message">
+              <span aria-hidden="true">➤</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- VOTER GUIDE SECTION -->
+    <section id="section-guide" class="section" aria-labelledby="guide-heading">
+      <div class="section-header">
+        <h2 id="guide-heading">📖 Complete Voter Guide</h2>
+        <p>Step-by-step guide to participate in Indian democracy</p>
+      </div>
+
+      <div class="guide-grid">
+        <article class="guide-card" aria-labelledby="step1-heading">
+          <div class="step-num" aria-hidden="true">01</div>
+          <div class="step-icon" aria-hidden="true">✅</div>
+          <h3 id="step1-heading">Check Eligibility</h3>
+          <p>You must be an Indian citizen, 18+ years old, and a resident of the constituency where you want to register.</p>
+          <div class="step-tag">Required</div>
+        </article>
+
+        <article class="guide-card" aria-labelledby="step2-heading">
+          <div class="step-num" aria-hidden="true">02</div>
+          <div class="step-icon" aria-hidden="true">📝</div>
+          <h3 id="step2-heading">Fill Form 6</h3>
+          <p>Visit voterportal.eci.gov.in or use the Voter Helpline App. Fill Form 6 with your personal and address details.</p>
+          <div class="step-tag">Online/Offline</div>
+        </article>
+
+        <article class="guide-card" aria-labelledby="step3-heading">
+          <div class="step-num" aria-hidden="true">03</div>
+          <div class="step-icon" aria-hidden="true">📄</div>
+          <h3 id="step3-heading">Submit Documents</h3>
+          <p>Provide: Aadhaar Card, PAN Card (optional), Passport photo, Proof of address (Ration card, Electricity bill).</p>
+          <div class="step-tag">Documents</div>
+        </article>
+
+        <article class="guide-card" aria-labelledby="step4-heading">
+          <div class="step-num" aria-hidden="true">04</div>
+          <div class="step-icon" aria-hidden="true">🆔</div>
+          <h3 id="step4-heading">Get Voter ID</h3>
+          <p>After verification, you'll receive your EPIC (Electors Photo Identity Card) — your official Voter ID card.</p>
+          <div class="step-tag">Identity Card</div>
+        </article>
+
+        <article class="guide-card" aria-labelledby="step5-heading">
+          <div class="step-num" aria-hidden="true">05</div>
+          <div class="step-icon" aria-hidden="true">🏛️</div>
+          <h3 id="step5-heading">Find Your Booth</h3>
+          <p>Use the Voter Helpline App or SMS "EPIC [Voter ID Number]" to 1950 to find your nearest polling booth.</p>
+          <div class="step-tag">Locate Booth</div>
+        </article>
+
+        <article class="guide-card" aria-labelledby="step6-heading">
+          <div class="step-num" aria-hidden="true">06</div>
+          <div class="step-icon" aria-hidden="true">🗳️</div>
+          <h3 id="step6-heading">Cast Your Vote</h3>
+          <p>On election day, visit your booth, show ID, get your finger marked with indelible ink, and press the EVM button!</p>
+          <div class="step-tag">Election Day</div>
+        </article>
+      </div>
+
+      <div class="helpline-box" role="complementary" aria-label="Voter helpline information">
+        <h3>📞 Voter Helpline</h3>
+        <p>Call <strong>1950</strong> for all election-related queries | Available in 22 Indian languages</p>
+        <a href="https://voterportal.eci.gov.in" target="_blank" rel="noopener noreferrer" class="eci-link" aria-label="Visit ECI Voter Portal (opens in new tab)">Visit ECI Portal →</a>
+      </div>
+    </section>
+
+    <!-- QUIZ SECTION -->
+    <section id="section-quiz" class="section" aria-labelledby="quiz-heading">
+      <div class="section-header">
+        <h2 id="quiz-heading">🧠 Election Knowledge Quiz</h2>
+        <p>Test your understanding of Indian democratic processes</p>
+      </div>
+
+      <div class="quiz-container">
+        <div id="quiz-progress" class="quiz-progress" role="progressbar" aria-valuemin="0" aria-valuemax="10">
+          <div class="progress-text">Question <span id="q-num">1</span> of 8</div>
+          <div class="progress-bar"><div id="progress-fill" class="progress-fill" style="width:12.5%"></div></div>
+        </div>
+
+        <div id="quiz-card" class="quiz-card" role="group" aria-labelledby="question-text">
+          <div class="quiz-icon" aria-hidden="true">🗳️</div>
+          <h3 id="question-text" class="question-text"></h3>
+          <div id="options-container" class="options-container" role="radiogroup" aria-labelledby="question-text"></div>
+        </div>
+
+        <div id="quiz-result" class="quiz-result hidden" role="status" aria-live="polite">
+          <div class="result-icon" id="result-icon"></div>
+          <h3 id="result-title"></h3>
+          <p id="result-desc"></p>
+          <button onclick="restartQuiz()" class="btn-primary" aria-label="Restart quiz">🔄 Try Again</button>
+        </div>
+
+        <div class="quiz-score" aria-live="polite">
+          Score: <strong id="score-display">0</strong> / <span id="total-display">8</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- YOUR RIGHTS SECTION -->
+    <section id="section-rights" class="section" aria-labelledby="rights-heading">
+      <div class="section-header">
+        <h2 id="rights-heading">⚖️ Your Voting Rights</h2>
+        <p>Know your fundamental rights as an Indian voter</p>
+      </div>
+
+      <div class="rights-grid">
+        <article class="right-card" aria-labelledby="right1">
+          <div class="right-icon" aria-hidden="true">🔒</div>
+          <h3 id="right1">Secret Ballot</h3>
+          <p>Your vote is completely secret. No one can force you to reveal who you voted for. This is protected by law.</p>
+        </article>
+        <article class="right-card" aria-labelledby="right2">
+          <div class="right-icon" aria-hidden="true">🚫</div>
+          <h3 id="right2">Right to NOTA</h3>
+          <p>"None of the Above" allows you to reject all candidates if you find none worthy of your vote.</p>
+        </article>
+        <article class="right-card" aria-labelledby="right3">
+          <div class="right-icon" aria-hidden="true">🛡️</div>
+          <h3 id="right3">Free from Coercion</h3>
+          <p>No one can threaten, bribe, or force you to vote for a particular party or candidate. Report violations to 1950.</p>
+        </article>
+        <article class="right-card" aria-labelledby="right4">
+          <div class="right-icon" aria-hidden="true">📋</div>
+          <h3 id="right4">Right to Information</h3>
+          <p>You have the right to know your candidates' criminal records, assets, and liabilities before voting.</p>
+        </article>
+        <article class="right-card" aria-labelledby="right5">
+          <div class="right-icon" aria-hidden="true">♿</div>
+          <h3 id="right5">Accessible Voting</h3>
+          <p>All polling booths must be accessible for differently-abled voters. Wheelchair access and Braille EVMs available.</p>
+        </article>
+        <article class="right-card" aria-labelledby="right6">
+          <div class="right-icon" aria-hidden="true">⏰</div>
+          <h3 id="right6">Paid Leave to Vote</h3>
+          <p>Your employer must give you paid leave on election day. This is a legal requirement under the Representation of People Act.</p>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span aria-hidden="true">🗳️</span>
+        <span>ElectroBot AI</span>
+      </div>
+      <p class="footer-text">Powered by <strong>Google Gemini AI</strong> | Built for PromptWars Hackathon | Election Commission of India</p>
+      <p class="footer-note" role="note">⚠️ AI-generated content for educational purposes only. Always verify with official ECI sources.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
