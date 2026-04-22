@@ -1,13 +1,5 @@
 const request = require('supertest');
-const express = require('express');
-
-// Mock server for testing
-const app = express();
-app.use(express.json());
-app.post('/api/chat', (req, res) => {
-  if (!req.body.message) return res.status(400).json({ error: 'Message required' });
-  res.json({ response: 'Test AI Response' });
-});
+const app = require('../server'); // Using the actual app exported from server.js
 
 describe('API Endpoints', () => {
   it('should return 400 if message is missing', async () => {

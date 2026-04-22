@@ -151,16 +151,18 @@ app.use((err, req, res, next) => {
 // ============================================
 // START SERVER
 // ============================================
-app.listen(PORT, '0.0.0.0', () => {
-  console.log('\n');
-  console.log('  🗳️  ElectroBot AI - Election Education App');
-  console.log('  ─────────────────────────────────────────');
-  console.log(`  ✅  Server running!`);
-  console.log(`  🌐  Local:   http://localhost:${PORT}`);
-  console.log(`  🔑  API Key: ${GEMINI_API_KEY ? '✅ Configured' : '❌ Missing - add to .env'}`);
-  console.log('  ─────────────────────────────────────────');
-  console.log('  💡  Ctrl+Click the link to open in browser');
-  console.log('  🛑  Press Ctrl+C to stop\n');
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log('\n');
+    console.log('  🗳️  ElectroBot AI - Election Education App');
+    console.log('  ─────────────────────────────────────────');
+    console.log(`  ✅  Server running!`);
+    console.log(`  🌐  Local:   http://localhost:${PORT}`);
+    console.log(`  🔑  API Key: ${GEMINI_API_KEY ? '✅ Configured' : '❌ Missing - add to .env'}`);
+    console.log('  ─────────────────────────────────────────');
+    console.log('  💡  Ctrl+Click the link to open in browser');
+    console.log('  🛑  Press Ctrl+C to stop\n');
+  });
+}
 
 module.exports = app;
