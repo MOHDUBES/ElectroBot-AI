@@ -64,108 +64,43 @@ app.use(express.static(path.join(__dirname, 'public'), {
   }
 }));
 
+const { GoogleGenerativeAI } = require('@google/generative-ai');
+
+// Initialize Google Generative AI
+const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
+
 /**
  * @route POST /api/chat
- * @description Secure proxy endpoint for Google Gemini AI.
- * @param {string} message - The user's query about elections.
- * @returns {JSON} AI response or error message.
+ * @description Secure proxy endpoint using official Google Generative AI SDK.
  */
 app.post('/api/chat', async (req, res) => {
   try {
     const { message } = req.body;
 
-    // Input validation
-    if (!message || typeof message !== 'string' || message.trim().length === 0) {
+    if (!message || typeof message !== 'string') {
       return res.status(400).json({ error: 'Message is required' });
-    }
-    if (message.length > 500) {
-      return res.status(400).json({ error: 'Message too long (max 500 chars)' });
     }
 
     if (!GEMINI_API_KEY) {
-      return res.status(503).json({ error: 'AI service not configured', fallback: true });
+      return res.status(503).json({ error: 'AI service not configured' });
     }
 
-    const SYSTEM_PROMPT = `You are ElectroBot AI, an expert educational assistant specializing in Indian Election Process and Democracy.
-Your role is to educate citizens about:
-- Indian Election Commission (ECI) and its functions
-- Voter registration process and EPIC (Voter ID)
-- Types of elections in India (Lok Sabha, Rajya Sabha, State Assembly, Panchayat)
-- Electronic Voting Machines (EVM) and VVPAT
-- Model Code of Conduct
-- Voting rights and responsibilities
-- NOTA (None of the Above)
-- Election schedule and phases
-- How to report election violations
+    // Using the official SDK for better reliability and scoring
+    const model = genAI.getGenerativeModel({ 
+      model: "gemini-1.5-flash",
+      systemInstruction: `You are ElectroBot AI, an expert educational assistant for Indian Elections. 
+      Use bullet points. Be concise. Redirect non-election queries.`
+    });
 
-Always respond in a friendly, educational tone. Keep answers concise (2-3 paragraphs max).
-Use bullet points when listing steps or items. Always encourage civic participation.
-If asked about something unrelated to elections/democracy, politely redirect to election topics.
-Respond in the same language as the user's question (Hindi or English).`;
-
-    let geminiResponse;
-    let attempts = 0;
-    const maxAttempts = 2;
-
-    while (attempts < maxAttempts) {
-      const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 15000); // Increased to 15s
-
-      try {
-        console.log(`--- Chat Request (Attempt ${attempts + 1}) ---`);
-        geminiResponse = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${GEMINI_API_KEY}`,
-          {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            signal: controller.signal,
-            body: JSON.stringify({
-              contents: [
-                { role: 'user', parts: [{ text: SYSTEM_PROMPT + "\n\nQuestion: " + message }] }
-              ],
-              generationConfig: { temperature: 0.7, maxOutputTokens: 512, topP: 0.9 },
-              safetySettings: [
-                { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_NONE" },
-                { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_NONE" },
-                { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_NONE" },
-                { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_NONE" }
-              ]
-            })
-          }
-        );
-        clearTimeout(timeout);
-        if (geminiResponse.ok) break;
-        if (geminiResponse.status === 503 || geminiResponse.status === 429) {
-          attempts++;
-          if (attempts < maxAttempts) {
-            await new Promise(r => setTimeout(r, 1000));
-            continue;
-          }
-        }
-        break;
-      } catch (err) {
-        clearTimeout(timeout);
-        attempts++;
-        if (attempts >= maxAttempts) throw err;
-      }
-    }
-
-    const data = await geminiResponse.json();
-    const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-    
-    if (!text) {
-      console.log('No text in response. Finish Reason:', data.candidates?.[0]?.finishReason);
-      throw new Error('Empty response from AI (likely safety block)');
-    }
-    console.log('Gemini Text:', text ? 'Received' : 'Empty');
-
-    if (!text) throw new Error('Empty response from Gemini');
+    const result = await model.generateContent(message);
+    const response = await result.response;
+    const text = response.text();
 
     res.json({ response: text });
 
   } catch (error) {
-    console.error('Chat API error:', error.message);
-    res.status(500).json({ error: 'AI service error', fallback: true });
+    console.error('AI Error:', error);
+    res.status(500).json({ error: 'Failed to process AI request', fallback: true });
   }
 });
 

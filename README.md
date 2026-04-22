@@ -51,12 +51,12 @@ ElectroBot-AI/
 └── .snyk               # Security Scanning Config
 ```
 
-## 🛡️ Security & Responsible AI
-- **Few-Shot Prompting:** Integrated 2-3 examples in the system instruction for high accuracy.
-- **Safety Filters:** Strict content filtering via Gemini API safety settings.
-- **Backend Proxy:** Gemini API keys are never exposed to the client-side.
-- **Content Security Policy (CSP):** Strict headers implemented via Helmet.js.
-- **Rate Limiting:** Prevents API abuse and ensures service availability.
+## 🛡️ Security & Technical Excellence
+- **Official Google AI SDK:** Integrated `@google/generative-ai` for robust, high-performance interactions with Gemini 1.5 Flash.
+- **W3C Accessibility (A11Y):** Full compliance with ARIA roles, semantic HTML, and skip-links for inclusivity.
+- **Enterprise Testing:** Comprehensive unit tests using **Jest** and **Supertest** for API reliability.
+- **Few-Shot Prompting:** Advanced prompt engineering with XML delimiters and context-rich examples.
+- **Safety Filters:** Production-grade safety thresholds via Gemini API settings.
 
 ## 🇮🇳 Why it matters?
 With over 900 million voters, India's democracy thrives on informed participation. ElectroBot AI bridges the gap between complex election laws and the common citizen through an intuitive, AI-driven interface.
