@@ -69,13 +69,22 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 // Initialize Google Generative AI
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 
+// Simple In-Memory Cache for common questions
+const responseCache = new Map();
+
 /**
  * @route POST /api/chat
- * @description Secure proxy endpoint using official Google Generative AI SDK.
+ * @description Secure proxy endpoint with caching for high efficiency.
  */
 app.post('/api/chat', async (req, res) => {
   try {
     const { message } = req.body;
+    const cacheKey = message?.toLowerCase().trim();
+
+    if (responseCache.has(cacheKey)) {
+      console.log('Serving from cache:', cacheKey);
+      return res.json({ response: responseCache.get(cacheKey) });
+    }
 
     if (!message || typeof message !== 'string') {
       return res.status(400).json({ error: 'Message is required' });
@@ -95,6 +104,9 @@ app.post('/api/chat', async (req, res) => {
     const result = await model.generateContent(message);
     const response = await result.response;
     const text = response.text();
+
+    // Cache the successful response
+    responseCache.set(cacheKey, text);
 
     res.json({ response: text });
 
