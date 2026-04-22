@@ -11,7 +11,12 @@ const rateLimit = require('express-rate-limit');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY || '';
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+
+if (!GEMINI_API_KEY && process.env.NODE_ENV !== 'test') {
+  console.error('Error: GEMINI_API_KEY is not set in environment variables.');
+  process.exit(1);
+}
 
 // ============================================
 // SECURITY MIDDLEWARE
