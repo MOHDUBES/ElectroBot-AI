@@ -23,6 +23,38 @@ ElectroBot AI is a premium, AI-powered educational platform designed to empower 
 4. Run the app: `npm run dev`.
 5. Access via: `http://localhost:8080`.
 
+## 🏗️ Technical Architecture
+```mermaid
+graph TD
+    User((User)) -->|HTTPS| Frontend[Web UI - Glassmorphism]
+    Frontend -->|API Request| Backend[Node.js / Express Server]
+    Backend -->|Security Layer| Helmet[Helmet.js CSP & Rate Limit]
+    Helmet -->|Secure API Call| Gemini[Google Gemini 1.5 Flash]
+    Gemini -->|AI Response| Backend
+    Backend -->|Processed Data| Frontend
+    Frontend -->|Interactive Guide| Modals[Voter Guide Modals]
+    Frontend -->|Gamification| Quiz[Civic Knowledge Quiz]
+```
+
+## 📂 Project Structure
+```text
+ElectroBot-AI/
+├── public/             # Frontend assets (HTML, CSS, JS)
+│   ├── index.html      # Main entry point
+│   ├── style.css       # Premium Glassmorphism UI
+│   └── app.js          # Core frontend logic & AI integration
+├── server.js           # Secure Express backend & Gemini Proxy
+├── Dockerfile          # Containerization for Cloud Run
+├── LICENSE             # MIT License
+└── package.json        # Dependencies & Scripts
+```
+
+## 🛡️ Security Features
+- **Backend Proxy:** Gemini API keys are never exposed to the client-side.
+- **Content Security Policy (CSP):** Strict headers implemented via Helmet.js.
+- **Rate Limiting:** Prevents API abuse and ensures service availability.
+- **Validation:** Sanitzed inputs for all AI prompts.
+
 ## 🇮🇳 Why it matters?
 With over 900 million voters, India's democracy thrives on informed participation. ElectroBot AI bridges the gap between complex election laws and the common citizen through an intuitive, AI-driven interface.
 

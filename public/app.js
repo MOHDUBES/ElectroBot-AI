@@ -6,9 +6,10 @@
 
 'use strict';
 
-// ============================================
-// NAVIGATION - All event listeners
-// ============================================
+/**
+ * Switches between different SPA sections.
+ * @param {string} name - The ID suffix of the section to show.
+ */
 function showSection(name) {
   document.querySelectorAll('.section').forEach(function(s) {
     s.classList.remove('active');
@@ -31,9 +32,11 @@ function showSection(name) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ============================================
-// GEMINI API - Calls secure backend proxy
-// ============================================
+/**
+ * Communicates with the secure backend proxy to get AI responses.
+ * @param {string} userMessage - The query text.
+ * @returns {Promise<string>} The AI response.
+ */
 function callGeminiAPI(userMessage) {
   return fetch('/api/chat', {
     method: 'POST',
@@ -49,6 +52,9 @@ function callGeminiAPI(userMessage) {
 
 var isProcessing = false;
 
+/**
+ * Handles UI logic for sending a message and displaying responses.
+ */
 function sendMessage() {
   var input = document.getElementById('user-input');
   var text = input.value.trim();

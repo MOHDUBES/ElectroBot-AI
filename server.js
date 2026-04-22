@@ -1,3 +1,8 @@
+/**
+ * ElectroBot AI Server
+ * Purpose: Secure backend proxy for Gemini AI and static file hosting.
+ * Author: MOHD UBES
+ */
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
@@ -59,9 +64,12 @@ app.use(express.static(path.join(__dirname, 'public'), {
   }
 }));
 
-// ============================================
-// GEMINI PROXY API - Key stays server-side
-// ============================================
+/**
+ * @route POST /api/chat
+ * @description Secure proxy endpoint for Google Gemini AI.
+ * @param {string} message - The user's query about elections.
+ * @returns {JSON} AI response or error message.
+ */
 app.post('/api/chat', async (req, res) => {
   try {
     const { message } = req.body;
