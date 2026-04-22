@@ -6,6 +6,26 @@
 
 'use strict';
 
+// ============================================
+// THEME TOGGLE - Dark/Light mode logic
+// ============================================
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+// Load saved theme
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'light') {
+  body.classList.add('light-theme');
+}
+
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    body.classList.toggle('light-theme');
+    const currentTheme = body.classList.contains('light-theme') ? 'light' : 'dark';
+    localStorage.setItem('theme', currentTheme);
+  });
+}
+
 /**
  * Switches between different SPA sections.
  * @param {string} name - The ID suffix of the section to show.
