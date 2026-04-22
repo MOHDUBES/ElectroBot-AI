@@ -29,5 +29,5 @@ With over 900 million voters, India's democracy thrives on informed participatio
 ---
 *Created with  for PromptWars Challenge 2.*
 
-**Live Demo:** [https://electrobot-ai.uc.r.appspot.com/](https://electrobot-ai.uc.r.appspot.com/)
-
+## 🔗 Live Demo
+[Visit ElectroBot AI Live](https://electrobot-ai-487149914287.us-central1.run.app)
