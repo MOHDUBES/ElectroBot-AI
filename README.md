@@ -40,20 +40,23 @@ graph TD
 ```text
 ElectroBot-AI/
 ├── public/             # Frontend assets (HTML, CSS, JS)
-│   ├── index.html      # Main entry point
-│   ├── style.css       # Premium Glassmorphism UI
-│   └── app.js          # Core frontend logic & AI integration
-├── server.js           # Secure Express backend & Gemini Proxy
+├── evaluation/         # AI Logic & Accuracy Assessment (Few-Shot)
+├── solution/           # Core Logic & Security Proxy
 ├── Dockerfile          # Containerization for Cloud Run
 ├── LICENSE             # MIT License
-└── package.json        # Dependencies & Scripts
+├── CONTRIBUTING.md     # Open Source Guidelines
+├── CODE_OF_CONDUCT.md  # Community Standards
+├── RESPONSIBLE_AI.md   # Safety & Ethical AI Documentation
+├── PROMPT_STRATEGY.md  # Detailed Prompt Engineering Docs
+└── .snyk               # Security Scanning Config
 ```
 
-## 🛡️ Security Features
+## 🛡️ Security & Responsible AI
+- **Few-Shot Prompting:** Integrated 2-3 examples in the system instruction for high accuracy.
+- **Safety Filters:** Strict content filtering via Gemini API safety settings.
 - **Backend Proxy:** Gemini API keys are never exposed to the client-side.
 - **Content Security Policy (CSP):** Strict headers implemented via Helmet.js.
 - **Rate Limiting:** Prevents API abuse and ensures service availability.
-- **Validation:** Sanitzed inputs for all AI prompts.
 
 ## 🇮🇳 Why it matters?
 With over 900 million voters, India's democracy thrives on informed participation. ElectroBot AI bridges the gap between complex election laws and the common citizen through an intuitive, AI-driven interface.

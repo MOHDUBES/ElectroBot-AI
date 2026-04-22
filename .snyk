@@ -1,0 +1,4 @@
+# Snyk project config file
+version: v1.22.0
+ignore: {}
+patch: {}
