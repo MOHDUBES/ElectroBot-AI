@@ -367,17 +367,62 @@ body::before {
 
 /* ============================================ FOOTER */
 .footer {
-  margin-top: 48px; border-top: 1px solid var(--border);
-  background: rgba(3,7,18,0.8);
+  margin-top: 64px;
+  background: rgba(15, 23, 42, 0.4);
+  border-top: 1px solid var(--border);
+  padding: 40px 24px;
+  text-align: center;
 }
-.footer-inner {
-  max-width: 1200px; margin: 0 auto;
-  padding: 24px; text-align: center;
-  display: flex; flex-direction: column; gap: 8px; align-items: center;
+.footer-brand {
+  font-size: 1.25rem; font-weight: 800; color: white;
+  margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 10px;
 }
-.footer-brand { display: flex; align-items: center; gap: 8px; font-size: 1rem; font-weight: 700; color: white; }
-.footer-text { color: var(--text-dim); font-size: 0.85rem; }
-.footer-note { color: var(--text-muted); font-size: 0.78rem; }
+.footer-text { color: var(--text-dim); margin-bottom: 8px; font-size: 0.95rem; }
+.footer-note { color: var(--text-muted); font-size: 0.8rem; }
+
+/* ============================================ MODAL */
+.modal {
+  position: fixed; inset: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px; transition: var(--transition);
+}
+.modal.hidden { display: none; }
+
+.modal-overlay {
+  position: absolute; inset: 0;
+  background: rgba(3, 7, 18, 0.9);
+  backdrop-filter: blur(10px);
+}
+.modal-content {
+  position: relative; width: 100%; max-width: 600px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 24px; padding: 40px;
+  box-shadow: var(--shadow);
+  animation: modalSlide 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@keyframes modalSlide {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-close {
+  position: absolute; top: 20px; right: 20px;
+  background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+  color: white; width: 40px; height: 40px; border-radius: 50%;
+  font-size: 1.5rem; cursor: pointer; transition: var(--transition);
+  display: flex; align-items: center; justify-content: center;
+}
+.modal-close:hover { background: var(--danger); border-color: var(--danger); transform: rotate(90deg); }
+
+.modal-header { text-align: center; margin-bottom: 24px; }
+.modal-icon { font-size: 3rem; margin-bottom: 12px; }
+.modal-header h2 { font-size: 1.8rem; font-weight: 800; color: white; }
+
+.modal-body { color: var(--text); line-height: 1.7; }
+.modal-body h3 { color: var(--primary-light); margin: 20px 0 12px; font-size: 1.2rem; }
+.modal-body ul, .modal-body ol { padding-left: 20px; margin-bottom: 16px; }
+.modal-body li { margin-bottom: 8px; color: var(--text-dim); }
+.modal-body strong { color: white; }
 
 /* ============================================ RESPONSIVE */
 @media (max-width: 768px) {
@@ -389,10 +434,11 @@ body::before {
   .chat-messages { height: 350px; }
   .guide-grid { grid-template-columns: 1fr; }
   .rights-grid { grid-template-columns: 1fr; }
-  .hero-stats { gap: 16px; }
+  .modal-content { padding: 30px 20px; }
 }
 @media (max-width: 480px) {
   .logo-title { font-size: 1.1rem; }
   .hero-title { font-size: 1.6rem; }
   .prompt-chips .chip { font-size: 0.78rem; padding: 6px 10px; }
 }
+
