@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://electrobot-ai-487149914287.us-central1.run.app/sitemap.xml

@@ -52,11 +52,11 @@ ElectroBot-AI/
 ```
 
 ## 🛡️ Security & Technical Excellence
-- **Official Google AI SDK:** Integrated `@google/generative-ai` for robust, high-performance interactions with Gemini 1.5 Flash.
-- **W3C Accessibility (A11Y):** Full compliance with ARIA roles, semantic HTML, and skip-links for inclusivity.
-- **Enterprise Testing:** Comprehensive unit tests using **Jest** and **Supertest** for API reliability.
-- **Few-Shot Prompting:** Advanced prompt engineering with XML delimiters and context-rich examples.
-- **Safety Filters:** Production-grade safety thresholds via Gemini API settings.
+- **Official Google AI SDK:** Integrated `@google/generative-ai` for robust Gemini 1.5 Flash interactions.
+- **Google Cloud Logging:** Centralized observability using `@google-cloud/logging` for production monitoring.
+- **W3C Accessibility (A11Y):** Full compliance with ARIA roles and semantic HTML.
+- **Comprehensive Testing:** Robust test suite using **Jest** and **Supertest** covering edge cases.
+- **CI/CD Pipeline:** Automated testing and build verification via GitHub Actions.
 
 ## 🇮🇳 Why it matters?
 With over 900 million voters, India's democracy thrives on informed participation. ElectroBot AI bridges the gap between complex election laws and the common citizen through an intuitive, AI-driven interface.

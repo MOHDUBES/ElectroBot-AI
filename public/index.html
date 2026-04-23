@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="ElectroBot AI - Your AI-powered guide to understanding the Indian Election Process. Learn about voting, ECI, and your civic rights."/>
+  <meta name="theme-color" content="#6366f1"/>
+  <link rel="manifest" href="manifest.json"/>
+  <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/927/927232.png"/>
   <title>ElectroBot AI | Election Process Education</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
@@ -16,26 +19,78 @@
   <!-- Header -->
   <header class="header" role="banner">
     <div class="header-inner">
+      <button id="menu-toggle" class="menu-toggle" aria-label="Open menu">
+        <span class="icon-menu">☰</span>
+      </button>
       <div class="logo">
         <span class="logo-icon" aria-hidden="true">🗳️</span>
         <div>
           <h1 class="logo-title">ElectroBot <span class="ai-badge">AI</span></h1>
-          <p class="logo-subtitle">Election Process Education</p>
+          <p class="logo-subtitle desktop-only">Election Process Education</p>
         </div>
       </div>
-      <nav class="nav" role="navigation" aria-label="Main navigation">
-        <button class="nav-btn active" data-section="chat" id="nav-chat" aria-current="page" aria-label="Ask AI section">💬 Ask AI</button>
-        <button class="nav-btn" data-section="guide" id="nav-guide" aria-label="Voter Guide section">📖 Voter Guide</button>
-        <button class="nav-btn" data-section="quiz" id="nav-quiz" aria-label="Quiz section">🧠 Quiz</button>
-        <button class="nav-btn" data-section="rights" id="nav-rights" aria-label="Your Rights section">⚖️ Your Rights</button>
-      <div class="header-actions">
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle light/dark mode">
-          <span class="icon-moon" aria-hidden="true">🌙 Dark</span>
-          <span class="icon-sun" aria-hidden="true">☀️ Light</span>
+      
+      <!-- Desktop Nav -->
+      <nav class="nav desktop-only" role="navigation" aria-label="Main navigation">
+        <button class="nav-btn active" data-section="chat" id="nav-chat"><span>💬</span> Ask AI</button>
+        <button class="nav-btn" data-section="guide" id="nav-guide"><span>📖</span> Voter Guide</button>
+        <button class="nav-btn" data-section="quiz" id="nav-quiz"><span>🧠</span> Quiz</button>
+        <button class="nav-btn" data-section="rights" id="nav-rights"><span>⚖️</span> Your Rights</button>
+      </nav>
+
+      <!-- Desktop Actions -->
+      <div class="header-actions desktop-only">
+        <button class="theme-toggle btn-theme" aria-label="Toggle mode">
+          <span class="icon-moon">🌙 Dark</span>
+          <span class="icon-sun">☀️ Light</span>
+        </button>
+        <button class="theme-toggle btn-lang" aria-label="Toggle language">
+          <span class="icon-lang">🌐</span>
+          <span class="lang-text">EN/HI</span>
         </button>
       </div>
     </div>
   </header>
+
+  <!-- Sidebar Menu for Mobile -->
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">
+        <span class="logo-icon">🗳️</span>
+        <h2 class="logo-title">ElectroBot</h2>
+      </div>
+      <button id="sidebar-close" class="sidebar-close">&times;</button>
+    </div>
+    <div class="sidebar-nav">
+      <button class="side-btn active" data-section="chat"><span>💬</span> Ask AI</button>
+      <button class="side-btn" data-section="guide"><span>📖</span> Voter Guide</button>
+      <button class="side-btn" data-section="quiz"><span>🧠</span> Quiz</button>
+      <button class="side-btn" data-section="rights"><span>⚖️</span> Your Rights</button>
+      
+      <!-- Theme Toggle Moved Here -->
+        <!-- Theme Toggle Moved Here -->
+        <div class="sidebar-theme">
+          <p class="theme-label">Appearance</p>
+          <button class="theme-toggle btn-theme" aria-label="Toggle light/dark mode">
+            <span class="icon-moon" aria-hidden="true">🌙 Dark Mode</span>
+            <span class="icon-sun" aria-hidden="true">☀️ Light Mode</span>
+          </button>
+        </div>
+
+        <!-- Language Toggle -->
+        <div class="sidebar-theme" style="margin-top: 12px;">
+          <p class="theme-label">Language / भाषा</p>
+          <button class="theme-toggle btn-lang" aria-label="Toggle language English/Hindi">
+            <span class="icon-lang" aria-hidden="true">🌐</span>
+            <span class="lang-text">English / हिंदी</span>
+          </button>
+        </div>
+      </div>
+    <div class="sidebar-footer">
+      <p>🇮🇳 Promoting Civic Awareness</p>
+    </div>
+  </aside>
+  <div id="sidebar-overlay" class="sidebar-overlay"></div>
 
   <main id="main-content" class="main" role="main">
 
